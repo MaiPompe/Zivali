@@ -1,0 +1,591 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Diagnostics.Eventing.Reader;
+using System.Drawing;
+using System.IO;
+using System.Linq;
+using System.Security.Cryptography.X509Certificates;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using ZivalLibrary;
+
+namespace Zival
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        public void PodatkiZivali()
+        {
+            podatkiZivali.Rows.Add();
+            imeZivali.Focus();
+        }
+
+        public void Izvoz()
+        {
+            string downloads = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads");
+            string pot = Path.Combine(downloads, "zivali.txt");
+            StreamWriter sw = new StreamWriter(pot);
+
+            if (radioVse.Checked)
+            {
+                sw.WriteLine("=== SESALCI ===");
+                for (int i = 0; i < ns; i++)
+                {
+                    sw.WriteLine("Ime: " + seznamImen[0, i]);
+                    sw.WriteLine(seznamSesalcev[i]);
+                    sw.WriteLine("--------------------");
+                }
+
+                sw.WriteLine("=== ČLENONOŽCI ===");
+                for (int i = 0; i < nc; i++)
+                {
+                    sw.WriteLine("Ime: " + seznamImen[1, i]);
+                    sw.WriteLine(seznamClenonozcev[i]);
+                    sw.WriteLine("--------------------");
+                }
+            }
+            else if(radioSesalec.Checked)
+            {
+                sw.WriteLine("=== SESALCI ===");
+                for (int i = 0; i < ns; i++)
+                {
+                    sw.WriteLine("Ime: " + seznamImen[0, i]);
+                    sw.WriteLine(seznamSesalcev[i]);
+                    sw.WriteLine("--------------------");
+                }
+            }
+            else if (radioČlenonožec.Checked)
+            {
+                sw.WriteLine("=== ČLENONOŽCI ===");
+                for (int i = 0; i < nc; i++)
+                {
+                    sw.WriteLine("Ime: " + seznamImen[1, i]);
+                    sw.WriteLine(seznamClenonozcev[i]);
+                    sw.WriteLine("--------------------");
+                }
+            }
+
+            sw.Close();
+        }
+
+        const int maxZivali = 100;
+        static int stZivali = 0;
+
+        string[,] seznamImen = new string[maxZivali, maxZivali];
+        Sesalec[] seznamSesalcev = new Sesalec[maxZivali];
+        Clenonozci[] seznamClenonozcev = new Clenonozci[maxZivali];
+        int ns = 0;
+        int nc = 0;
+
+        private void vrstaZivali_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ustvariZival.Enabled = true;
+            vrstaZivali.Enabled = false;
+
+            if (vrstaZivali.SelectedItem.ToString() == "Sesalec")
+            {
+                vrstaZivali.Text = "Sesalec";
+
+                podatkiZivali.Columns.Add("colTeza","Teza (kg)");
+                podatkiZivali.Columns.Add("colHabitat", "Naravni habitat");
+                podatkiZivali.Columns.Add("colHrana", "Hrana");
+                podatkiZivali.Columns.Add("colOglasanje", "Oglašanje");
+                podatkiZivali.Columns.Add("colLatinskoIme", "Latinsko ime");
+            }
+            else if (vrstaZivali.SelectedItem.ToString() == "Kopenski sesalec")
+            {
+                vrstaZivali.Text = "Kopenski sesalec";
+
+                podatkiZivali.Columns.Add("colTeza", "Teza (kg)");
+                podatkiZivali.Columns.Add("colHabitat", "Naravni habitat");
+                podatkiZivali.Columns.Add("colHrana", "Hrana");
+                podatkiZivali.Columns.Add("colOglasanje", "Oglašanje");
+                podatkiZivali.Columns.Add("colLatinskoIme", "Latinsko ime");
+                podatkiZivali.Columns.Add("colSteviloNog", "Število nog");
+                podatkiZivali.Columns.Add("colImaDlako", "Ima dlako (true/false)");
+            }
+            else if (vrstaZivali.SelectedItem.ToString() == "Vodni sesalec")
+            {
+                vrstaZivali.Text = "Vodni sesalec";
+
+                podatkiZivali.Columns.Add("colTeza", "Teza (kg)");
+                podatkiZivali.Columns.Add("colHabitat", "Naravni habitat");
+                podatkiZivali.Columns.Add("colHrana", "Hrana");
+                podatkiZivali.Columns.Add("colOglasanje", "Oglašanje");
+                podatkiZivali.Columns.Add("colLatinskoIme", "Latinsko ime");
+                podatkiZivali.Columns.Add("colDolzinaPlavuti", "Dolžina plavuti (cm)");
+                podatkiZivali.Columns.Add("colSteviloPlavuti", "Število plavuti");
+                podatkiZivali.Columns.Add("colGlobinaPotopa", "Globina potopa (m)");
+            }
+            else if (vrstaZivali.SelectedItem.ToString() == "Leteči sesalec")
+            {
+                vrstaZivali.Text = "Leteči sesalec";
+
+                podatkiZivali.Columns.Add("colTeza", "Teza (kg)");
+                podatkiZivali.Columns.Add("colHabitat", "Naravni habitat");
+                podatkiZivali.Columns.Add("colHrana", "Hrana");
+                podatkiZivali.Columns.Add("colOglasanje", "Oglašanje");
+                podatkiZivali.Columns.Add("colLatinskoIme", "Latinsko ime");
+                podatkiZivali.Columns.Add("colRazponKril", "Razpon kril (cm)");
+                podatkiZivali.Columns.Add("colMaxRazdaljaLeta", "Max razdalja leta (km)");
+            }
+            else if(vrstaZivali.SelectedItem.ToString() == "Členonožec")
+            {
+                vrstaZivali.Text = "Členonožec";
+
+                podatkiZivali.Columns.Add("colTeza", "Teza (kg)");
+                podatkiZivali.Columns.Add("colHabitat", "Naravni habitat");
+                podatkiZivali.Columns.Add("colHrana", "Hrana");
+                podatkiZivali.Columns.Add("colOglasanje", "Oglašanje");
+                podatkiZivali.Columns.Add("colLatinskoIme", "Latinsko ime");
+                podatkiZivali.Columns.Add("colSteviloNog", "Število nog");
+            }
+            else if(vrstaZivali.SelectedItem.ToString() == "Žuželka")
+            {
+                vrstaZivali.Text = "Žuželka";
+
+                podatkiZivali.Columns.Add("colTeza", "Teza (kg)");
+                podatkiZivali.Columns.Add("colHabitat", "Naravni habitat");
+                podatkiZivali.Columns.Add("colHrana", "Hrana");
+                podatkiZivali.Columns.Add("colOglasanje", "Oglašanje");
+                podatkiZivali.Columns.Add("colLatinskoIme", "Latinsko ime");
+                podatkiZivali.Columns.Add("colSteviloNog", "Število nog");
+                podatkiZivali.Columns.Add("colLeti", "Leti? (true/false)");
+            }
+            else if(vrstaZivali.SelectedItem.ToString() == "Pajkovec")
+            {
+                vrstaZivali.Text = "Pajkovec";
+
+                podatkiZivali.Columns.Add("colTeza", "Teza (kg)");
+                podatkiZivali.Columns.Add("colHabitat", "Naravni habitat");
+                podatkiZivali.Columns.Add("colHrana", "Hrana");
+                podatkiZivali.Columns.Add("colOglasanje", "Oglašanje");
+                podatkiZivali.Columns.Add("colLatinskoIme", "Latinsko ime");
+                podatkiZivali.Columns.Add("colSteviloNog", "Število nog");
+                podatkiZivali.Columns.Add("colStrupen", "Strupen? (true/false)");
+                podatkiZivali.Columns.Add("colPleteMrezo", "Plete mrežo? (true/false)");
+            }
+            else if(vrstaZivali.SelectedItem.ToString() == "Rak")
+            {
+                vrstaZivali.Text = "Rak";
+
+                podatkiZivali.Columns.Add("colTeza", "Teza (kg)");
+                podatkiZivali.Columns.Add("colHabitat", "Naravni habitat");
+                podatkiZivali.Columns.Add("colHrana", "Hrana");
+                podatkiZivali.Columns.Add("colOglasanje", "Oglašanje");
+                podatkiZivali.Columns.Add("colLatinskoIme", "Latinsko ime");
+                podatkiZivali.Columns.Add("colSteviloNog", "Število nog");
+                podatkiZivali.Columns.Add("colZiviVSlaniVodi", "Živi v slani vodi? (true/false)");
+                podatkiZivali.Columns.Add("colVelikostKlesc", "Velikost klešč (cm)");
+            }
+
+            PodatkiZivali();
+        }
+
+        private void ustvariZival_Click(object sender, EventArgs e)
+        {
+            if (stZivali == maxZivali)
+            {
+                MessageBox.Show("Dosegli ste maksimalno število živali!", "Napaka!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else if (vrstaZivali.SelectedItem.ToString() == "Sesalec")
+            {
+                double Teza = Convert.ToDouble(podatkiZivali.Rows[0].Cells["colTeza"].Value);
+                string NaravniHabitat = podatkiZivali.Rows[0].Cells["colHabitat"].Value.ToString();
+                string Hrana = podatkiZivali.Rows[0].Cells["colHrana"].Value.ToString();
+                string Oglasanje = podatkiZivali.Rows[0].Cells["colOglasanje"].Value.ToString();
+                string LatinskoIme = podatkiZivali.Rows[0].Cells["colLatinskoIme"].Value.ToString();
+
+                string ime = imeZivali.Text;
+                zivali.Items.Add(ime);
+                comboBoxZival1.Items.Add(ime);
+                comboBoxZival2.Items.Add(ime);
+
+                Sesalec s = new Sesalec(Teza, NaravniHabitat, Hrana, Oglasanje, LatinskoIme);
+
+                seznamSesalcev[ns] = s;
+                seznamImen[0, ns] = ime;
+                ns++;
+                stZivali++;
+
+                MessageBox.Show("Ustvarili ste sesalca: " + ime + "\n" + s.ToString(), "Ustvarili ste sesalca!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else if (vrstaZivali.SelectedItem.ToString() == "Kopenski sesalec")
+            {
+                double Teza = Convert.ToDouble(podatkiZivali.Rows[0].Cells["colTeza"].Value);
+                string NaravniHabitat = podatkiZivali.Rows[0].Cells["colHabitat"].Value.ToString();
+                string Hrana = podatkiZivali.Rows[0].Cells["colHrana"].Value.ToString();
+                string Oglasanje = podatkiZivali.Rows[0].Cells["colOglasanje"].Value.ToString();
+                string LatinskoIme = podatkiZivali.Rows[0].Cells["colLatinskoIme"].Value.ToString();
+                int SteviloNog = Convert.ToInt32(podatkiZivali.Rows[0].Cells["colSteviloNog"].Value);
+                bool ImaDlako = Convert.ToBoolean(podatkiZivali.Rows[0].Cells["colImaDlako"].Value);
+
+                string ime = imeZivali.Text;
+                zivali.Items.Add(ime);
+                comboBoxZival1.Items.Add(ime);
+                comboBoxZival2.Items.Add(ime);
+
+                KopenskiSesalec ks = new KopenskiSesalec(Teza, NaravniHabitat, Hrana, Oglasanje, LatinskoIme, SteviloNog, ImaDlako);
+
+                seznamSesalcev[ns] = ks;
+                seznamImen[0, ns] = ime;
+                ns++;
+                stZivali++;
+
+                MessageBox.Show("Ustvarili ste kopenskega sesalca: " + ime + "\n" + ks.ToString(), "Ustvarili ste kopenskega sesalca!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else if (vrstaZivali.SelectedItem.ToString() == "Vodni sesalec")
+            {
+                double Teza = Convert.ToDouble(podatkiZivali.Rows[0].Cells["colTeza"].Value);
+                string NaravniHabitat = podatkiZivali.Rows[0].Cells["colHabitat"].Value.ToString();
+                string Hrana = podatkiZivali.Rows[0].Cells["colHrana"].Value.ToString();
+                string Oglasanje = podatkiZivali.Rows[0].Cells["colOglasanje"].Value.ToString();
+                string LatinskoIme = podatkiZivali.Rows[0].Cells["colLatinskoIme"].Value.ToString();
+                double DolzinaPlavuti = Convert.ToDouble(podatkiZivali.Rows[0].Cells["colDolzinaPlavuti"].Value);
+                int SteviloPlavuti = Convert.ToInt32(podatkiZivali.Rows[0].Cells["colSteviloPlavuti"].Value);
+                double GlobinaPotopa = Convert.ToDouble(podatkiZivali.Rows[0].Cells["colGlobinaPotopa"].Value);
+
+                string ime = imeZivali.Text;
+                zivali.Items.Add(ime);
+                comboBoxZival1.Items.Add(ime);
+                comboBoxZival2.Items.Add(ime);
+
+                VodniSesalec vs = new VodniSesalec(Teza, NaravniHabitat, Hrana, Oglasanje, LatinskoIme, DolzinaPlavuti, SteviloPlavuti, GlobinaPotopa);
+
+                seznamSesalcev[ns] = vs;
+                seznamImen[0, ns] = ime;
+                ns++;
+                stZivali++;
+
+                MessageBox.Show("Ustvarili ste vodnega sesalca: " + ime + "\n" + vs.ToString(), "Ustvarili ste vodnega sesalca!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else if (vrstaZivali.SelectedItem.ToString() == "Leteči sesalec")
+            {
+                double Teza = Convert.ToDouble(podatkiZivali.Rows[0].Cells["colTeza"].Value);
+                string NaravniHabitat = podatkiZivali.Rows[0].Cells["colHabitat"].Value.ToString();
+                string Hrana = podatkiZivali.Rows[0].Cells["colHrana"].Value.ToString();
+                string Oglasanje = podatkiZivali.Rows[0].Cells["colOglasanje"].Value.ToString();
+                string LatinskoIme = podatkiZivali.Rows[0].Cells["colLatinskoIme"].Value.ToString();
+                double RazponKril = Convert.ToDouble(podatkiZivali.Rows[0].Cells["colRazponKril"].Value);
+                double MaxRazdaljaLeta = Convert.ToDouble(podatkiZivali.Rows[0].Cells["colMaxRazdaljaLeta"].Value);
+
+                string ime = imeZivali.Text;
+                zivali.Items.Add(ime);
+                comboBoxZival1.Items.Add(ime);
+                comboBoxZival2.Items.Add(ime);
+
+                LeteciSesalec ls = new LeteciSesalec(Teza, NaravniHabitat, Hrana, Oglasanje, LatinskoIme, RazponKril, MaxRazdaljaLeta);
+
+                seznamSesalcev[ns] = ls;
+                seznamImen[0, ns] = ime;
+                ns++;
+                stZivali++;
+
+                MessageBox.Show("Ustvarili ste letečega sesalca: " + ime + "\n" + ls.ToString(), "Ustvarili ste letečega sesalca!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else if (vrstaZivali.SelectedItem.ToString() == "Členonožec")
+
+            {
+                double Teza = Convert.ToDouble(podatkiZivali.Rows[0].Cells["colTeza"].Value);
+                string NaravniHabitat = podatkiZivali.Rows[0].Cells["colHabitat"].Value.ToString();
+                string Hrana = podatkiZivali.Rows[0].Cells["colHrana"].Value.ToString();
+                string Oglasanje = podatkiZivali.Rows[0].Cells["colOglasanje"].Value.ToString();
+                string LatinskoIme = podatkiZivali.Rows[0].Cells["colLatinskoIme"].Value.ToString();
+                int SteviloNog = Convert.ToInt32(podatkiZivali.Rows[0].Cells["colSteviloNog"].Value);
+
+                string ime = imeZivali.Text;
+                zivali.Items.Add(ime);
+                comboBoxZival1.Items.Add(ime);
+                comboBoxZival2.Items.Add(ime);
+
+                Clenonozci c = new Clenonozci(Teza, NaravniHabitat, Hrana, Oglasanje, LatinskoIme, SteviloNog);
+
+                seznamClenonozcev[nc] = c;
+                seznamImen[1, nc] = ime;
+                nc++;
+                stZivali++;
+
+                MessageBox.Show("Ustvarili ste členonožca: " + ime + "\n" + c.ToString(), "Ustvarili ste členonožca!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else if (vrstaZivali.SelectedItem.ToString() == "Žuželka")
+            {
+                double Teza = Convert.ToDouble(podatkiZivali.Rows[0].Cells["colTeza"].Value);
+                string NaravniHabitat = podatkiZivali.Rows[0].Cells["colHabitat"].Value.ToString();
+                string Hrana = podatkiZivali.Rows[0].Cells["colHrana"].Value.ToString();
+                string Oglasanje = podatkiZivali.Rows[0].Cells["colOglasanje"].Value.ToString();
+                string LatinskoIme = podatkiZivali.Rows[0].Cells["colLatinskoIme"].Value.ToString();
+                int SteviloNog = Convert.ToInt32(podatkiZivali.Rows[0].Cells["colSteviloNog"].Value);
+                bool Leti = Convert.ToBoolean(podatkiZivali.Rows[0].Cells["colLeti"].Value);
+
+                string ime = imeZivali.Text;
+                zivali.Items.Add(ime);
+                comboBoxZival1.Items.Add(ime);
+                comboBoxZival2.Items.Add(ime);
+
+                Zuzelke z = new Zuzelke(Teza, NaravniHabitat, Hrana, Oglasanje, LatinskoIme, SteviloNog, Leti);
+
+                seznamClenonozcev[nc] = z;
+                seznamImen[1, nc] = ime;
+                nc++;
+                stZivali++;
+
+                MessageBox.Show("Ustvarili ste žuželko: " + ime + "\n" + z.ToString(), "Ustvarili ste žuželko!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
+            else if (vrstaZivali.SelectedItem.ToString() == "Pajkovec")
+            {
+                double Teza = Convert.ToDouble(podatkiZivali.Rows[0].Cells["colTeza"].Value);
+                string NaravniHabitat = podatkiZivali.Rows[0].Cells["colHabitat"].Value.ToString();
+                string Hrana = podatkiZivali.Rows[0].Cells["colHrana"].Value.ToString();
+                string Oglasanje = podatkiZivali.Rows[0].Cells["colOglasanje"].Value.ToString();
+                string LatinskoIme = podatkiZivali.Rows[0].Cells["colLatinskoIme"].Value.ToString();
+                int SteviloNog = Convert.ToInt32(podatkiZivali.Rows[0].Cells["colSteviloNog"].Value);
+                bool Strupen = Convert.ToBoolean(podatkiZivali.Rows[0].Cells["colStrupen"].Value);
+                bool PleteMrezo = Convert.ToBoolean(podatkiZivali.Rows[0].Cells["colPleteMrezo"].Value);
+
+                string ime = imeZivali.Text;
+                zivali.Items.Add(ime);
+                comboBoxZival1.Items.Add(ime);
+                comboBoxZival2.Items.Add(ime);
+
+                Pajkovci p = new Pajkovci(Teza, NaravniHabitat, Hrana, Oglasanje, LatinskoIme, SteviloNog, Strupen, PleteMrezo);
+
+                seznamClenonozcev[nc] = p;
+                seznamImen[1, nc] = ime;
+                nc++;
+                stZivali++;
+
+                MessageBox.Show("Ustvarili ste pajkovca: " + ime + "\n" + p.ToString(), "Ustvarili ste pajkovca!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else if (vrstaZivali.SelectedItem.ToString() == "Rak")
+            {
+                double Teza = Convert.ToDouble(podatkiZivali.Rows[0].Cells["colTeza"].Value);
+                string NaravniHabitat = podatkiZivali.Rows[0].Cells["colHabitat"].Value.ToString();
+                string Hrana = podatkiZivali.Rows[0].Cells["colHrana"].Value.ToString();
+                string Oglasanje = podatkiZivali.Rows[0].Cells["colOglasanje"].Value.ToString();
+                string LatinskoIme = podatkiZivali.Rows[0].Cells["colLatinskoIme"].Value.ToString();
+                int SteviloNog = Convert.ToInt32(podatkiZivali.Rows[0].Cells["colSteviloNog"].Value);
+                bool ZiviVSlaniVodi = Convert.ToBoolean(podatkiZivali.Rows[0].Cells["colZiviVSlaniVodi"].Value);
+                double VelikostKlesc = Convert.ToDouble(podatkiZivali.Rows[0].Cells["colVelikostKlesc"].Value);
+
+                string ime = imeZivali.Text;
+                zivali.Items.Add(ime);
+                comboBoxZival1.Items.Add(ime);
+                comboBoxZival2.Items.Add(ime);
+
+                Raki r = new Raki(Teza, NaravniHabitat, Hrana, Oglasanje, LatinskoIme, SteviloNog, ZiviVSlaniVodi, VelikostKlesc);
+
+                seznamClenonozcev[nc] = r;
+                seznamImen[1, nc] = ime;
+                nc++;
+                stZivali++;
+
+                MessageBox.Show("Ustvarili ste raka: " + ime + "\n" + r.ToString(), "Ustvarili ste raka!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
+            ustvariZival.Enabled = false;
+            vrstaZivali.Enabled = true;
+
+            podatkiZivali.Columns.Clear();
+            imeZivali.Clear();
+            vrstaZivali.Text = "";
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            izpisZivali.Enabled = true;
+            vrstaZivali2.Enabled = false;
+        }
+
+        private void izpisZivali_Click(object sender, EventArgs e)
+        {
+            izpisZivali.Enabled = false;
+            vrstaZivali2.Enabled = true;
+            listBox1.Items.Clear();
+
+            if (vrstaZivali2.SelectedItem.ToString() == "Sesalec")
+            {
+                for (int i = 0; i < ns; i++)
+                {
+                    listBox1.Items.Add("Ime: " + seznamImen[0, i]);
+                    listBox1.Items.Add(seznamSesalcev[i]);
+                    listBox1.Items.Add("------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+                }
+            }
+            else if (vrstaZivali2.SelectedItem.ToString() == "Kopenski sesalec")
+            {
+                for (int i = 0; i < ns; i++)
+                {
+                    if (seznamSesalcev[i] is KopenskiSesalec)
+                    {
+                        listBox1.Items.Add("Ime: " + seznamImen[0, i]);
+                        listBox1.Items.Add(seznamSesalcev[i]);
+                        listBox1.Items.Add("------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+                    }
+                }
+            }
+            else if (vrstaZivali2.SelectedItem.ToString() == "Vodni sesalec")
+            {
+                for (int i = 0; i < ns; i++)
+                {
+                    if (seznamSesalcev[i] is VodniSesalec)
+                    {
+                        listBox1.Items.Add("Ime: " + seznamImen[0, i]);
+                        listBox1.Items.Add(seznamSesalcev[i]);
+                        listBox1.Items.Add("------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+                    }
+                }
+            }
+            else if (vrstaZivali2.SelectedItem.ToString() == "Leteči sesalec")
+            {
+                for (int i = 0; i < ns; i++)
+                {
+                    if (seznamSesalcev[i] is LeteciSesalec)
+                    {
+                        listBox1.Items.Add("Ime: " + seznamImen[0, i]);
+                        listBox1.Items.Add(seznamSesalcev[i]);
+                        listBox1.Items.Add("------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+                    }
+                }
+            }
+            else if (vrstaZivali2.SelectedItem.ToString() == "Členonožec")
+            {
+                for (int i = 0; i < nc; i++)
+                {
+                    listBox1.Items.Add("Ime: " + seznamImen[1, i]);
+                    listBox1.Items.Add(seznamClenonozcev[i]);
+                    listBox1.Items.Add("------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+                }
+            }
+            else if (vrstaZivali2.SelectedItem.ToString() == "Žuželka")
+            {
+                for (int i = 0; i < nc; i++)
+                {
+                    if (seznamClenonozcev[i] is Zuzelke)
+                    {
+                        listBox1.Items.Add("Ime: " + seznamImen[1, i]);
+                        listBox1.Items.Add(seznamClenonozcev[i]);
+                        listBox1.Items.Add("------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+                    }
+                }
+            }
+            else if (vrstaZivali2.SelectedItem.ToString() == "Pajkovec")
+            {
+                for (int i = 0; i < nc; i++)
+                {
+                    if (seznamClenonozcev[i] is Pajkovci)
+                    {
+                        listBox1.Items.Add("Ime: " + seznamImen[1, i]);
+                        listBox1.Items.Add(seznamClenonozcev[i]);
+                        listBox1.Items.Add("------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+                    }
+                }
+            }
+            else if (vrstaZivali2.SelectedItem.ToString() == "Rak")
+            {
+                for (int i = 0; i < nc; i++)
+                {
+                    if (seznamClenonozcev[i] is Raki)
+                    {
+                        listBox1.Items.Add("Ime: " + seznamImen[1, i]);
+                        listBox1.Items.Add(seznamClenonozcev[i]);
+                        listBox1.Items.Add("------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+                    }
+                }
+            }
+        }
+
+        private void zivali_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            oglasanjeZivali.Enabled = true;
+            zivali.Enabled = false;
+        }
+
+        private void oglasanjeZivali_Click(object sender, EventArgs e)
+        {
+            oglasanjeZivali.Enabled = false;
+            zivali.Enabled = true;
+
+            string izbranaZival = zivali.SelectedItem.ToString();
+            bool preverjanje = false;
+            int pozicijaImena = 0;
+
+            for (int i = 0; i < seznamImen.GetLength(0); i++)
+            {
+                if (seznamImen[0, i] == izbranaZival)
+                {
+                    pozicijaImena = i;
+                    preverjanje = true;
+                    break;
+                }
+            }
+
+            if (preverjanje == false)
+            {
+                for (int i = 0; i < seznamImen.GetLength(1); i++)
+                {
+                    if (seznamImen[1, i] == izbranaZival)
+                    {
+                        pozicijaImena = i;
+                        break;
+                    }
+                }
+            }
+
+            if (preverjanje == true) glasZivali.Text = seznamSesalcev[pozicijaImena].Oglasanje;
+            else glasZivali.Text = seznamClenonozcev[pozicijaImena].Oglasanje;
+        }
+
+        private void btnIzvoz_Click(object sender, EventArgs e)
+        {
+            Izvoz();
+            MessageBox.Show("Podatki o živalih so bili uspešno izvoženi", "Izvoz uspešen",MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+        private ZivalLibrary.Zival NajdiZivalPoImenu(string iskanoIme)
+        {
+            for (int i = 0; i < ns; i++)
+            {
+                if (seznamImen[0, i] == iskanoIme)
+                {
+                    return seznamSesalcev[i];
+                }
+            }
+
+            for (int i = 0; i < nc; i++)
+            {
+                if (seznamImen[1, i] == iskanoIme)
+                {
+                    return seznamClenonozcev[i];
+                }
+            }
+            return null;
+        }
+        private void buttonTeza_Click(object sender, EventArgs e)
+        {
+            if (comboBoxZival1.SelectedItem == null || comboBoxZival2.SelectedItem == null)
+            {
+                MessageBox.Show("Izberi obe živali!");
+                return;
+            }
+
+            string ime1 = comboBoxZival1.SelectedItem.ToString();
+            string ime2 = comboBoxZival2.SelectedItem.ToString();
+
+            ZivalLibrary.Zival z1 = NajdiZivalPoImenu(ime1);
+            ZivalLibrary.Zival z2 = NajdiZivalPoImenu(ime2);
+
+            if (z1 != null && z2 != null)
+            {
+                string rezultat = ZivalLibrary.Zival.PrimerjajTezo(z1, z2);
+                MessageBox.Show(rezultat);
+            }
+        }
+    }
+}
