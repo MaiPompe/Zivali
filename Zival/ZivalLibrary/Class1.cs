@@ -61,13 +61,36 @@ namespace ZivalLibrary
         double VelikostKlesc { get; set; }
     }
 
+    public delegate string OglasanjeZivali(Zival z);
+    public delegate void ZivalUstvarjenaEventHandler(Zival z, string ime);
+
     abstract public class Zival : IZival
     {
+        public event ZivalUstvarjenaEventHandler ZivalUstvarjena;
+
+        public void KoJeZivalUstvarjena(string ime)
+        {
+            ZivalUstvarjena(this, ime);
+        }
+
         private double teza;
         private string naravniHabitat;
         private string hrana;
         private string oglasanje;
         private readonly string latinskoIme;
+
+        public string this[int index]
+        {
+            get 
+            {
+                if(index == 0) return teza.ToString();
+                else if (index == 1) return naravniHabitat;
+                else if (index == 2) return hrana;
+                else if (index == 3) return oglasanje;
+                else if (index == 4) return latinskoIme;
+                else return "Ta podatek ne obstaja. Izberite drugega.";
+            }
+        }
 
         public Zival(double teza, string naravniHabitat, string hrana, string oglasanje, string latinskoIme)
         {
@@ -135,6 +158,19 @@ namespace ZivalLibrary
             //enako kot base
         }
 
+        public new string this[int index]
+        {
+            get
+            {
+                if (index == 0) return base[index];
+                else if (index == 1) return base[index];
+                else if (index == 2) return base[index];
+                else if (index == 3) return base[index];
+                else if (index == 4) return base[index];
+                else return "Ta podatek ne obstaja. Izberite drugega.";
+            }
+        }
+
         public override string ToString()
         {
             return base.ToString();
@@ -162,6 +198,21 @@ namespace ZivalLibrary
     {
         private int steviloNog;
         private bool imaDlako;
+
+        public new string this[int index]
+        {
+            get
+            {
+                if (index == 0) return base[index];
+                else if (index == 1) return base[index];
+                else if (index == 2) return base[index];
+                else if (index == 3) return base[index];
+                else if (index == 4) return base[index];
+                else if (index == 5) return steviloNog.ToString();
+                else if (index == 6) return imaDlako ? "Da" : "Ne";
+                else return "Ta podatek ne obstaja. Izberite drugega.";
+            }
+        }
 
         public int SteviloNog
         {
@@ -197,6 +248,22 @@ namespace ZivalLibrary
         private double dolzinaPlavuti;
         private int steviloPlavuti;
         private double globinaPotopa;
+
+        public new string this[int index]
+        {
+            get
+            {
+                if (index == 0) return base[index];
+                else if (index == 1) return base[index];
+                else if (index == 2) return base[index];
+                else if (index == 3) return base[index];
+                else if (index == 4) return base[index];
+                else if (index == 5) return dolzinaPlavuti.ToString();
+                else if (index == 6) return steviloPlavuti.ToString();
+                else if (index == 7) return globinaPotopa.ToString();
+                else return "Ta podatek ne obstaja. Izberite drugega.";
+            }
+        }
 
         public double DolzinaPlavuti
         {
@@ -239,6 +306,21 @@ namespace ZivalLibrary
         private double razponKril;
         private double maxRazdaljaLeta;
 
+        public new string this[int index]
+        {
+            get
+            {
+                if (index == 0) return base[index];
+                else if (index == 1) return base[index];
+                else if (index == 2) return base[index];
+                else if (index == 3) return base[index];
+                else if (index == 4) return base[index];
+                else if (index == 5) return razponKril.ToString();
+                else if (index == 6) return maxRazdaljaLeta.ToString();
+                else return "Ta podatek ne obstaja. Izberite drugega.";
+            }
+        }
+
         public double RazponKril
         {
             get { return razponKril; }
@@ -271,6 +353,20 @@ namespace ZivalLibrary
     public class Clenonozci : Zival, IClenonozci
     {
         private int steviloNog;
+
+        public new string this[int index]
+        {
+            get
+            {
+                if (index == 0) return base[index];
+                else if (index == 1) return base[index];
+                else if (index == 2) return base[index];
+                else if (index == 3) return base[index];
+                else if (index == 4) return base[index];
+                else if (index == 5) return steviloNog.ToString();
+                else return "Ta podatek ne obstaja. Izberite drugega.";
+            }
+        }
 
         public int SteviloNog
         {
@@ -309,6 +405,22 @@ namespace ZivalLibrary
     public class Zuzelke : Clenonozci, IZuzelke
     {
         private bool leti;
+
+        public new string this[int index]
+        {
+            get
+            {
+                if (index == 0) return base[index];
+                else if (index == 1) return base[index];
+                else if (index == 2) return base[index];
+                else if (index == 3) return base[index];
+                else if (index == 4) return base[index];
+                else if (index == 5) return base[index];
+                else if (index == 6) return leti ? "Da" : "Ne";
+                else return "Ta podatek ne obstaja. Izberite drugega.";
+            }
+        }
+
         public bool Leti
         {
             get { return leti; }
@@ -341,6 +453,22 @@ namespace ZivalLibrary
     {
         private bool strupen;
         private bool pleteMrezo;
+
+        public new string this[int index]
+        {
+            get
+            {
+                if (index == 0) return base[index];
+                else if (index == 1) return base[index];
+                else if (index == 2) return base[index];
+                else if (index == 3) return base[index];
+                else if (index == 4) return base[index];
+                else if (index == 5) return base[index];
+                else if (index == 6) return strupen ? "Da" : "Ne";
+                else if (index == 7) return pleteMrezo ? "Da" : "Ne";
+                else return "Ta podatek ne obstaja. Izberite drugega.";
+            }
+        }
 
         public bool Strupen
         {
@@ -375,6 +503,22 @@ namespace ZivalLibrary
     {
         private bool ziviVSlaniVodi;
         private double velikostKlesc;
+
+        public new string this[int index]
+        {
+            get
+            {
+                if (index == 0) return base[index];
+                else if (index == 1) return base[index];
+                else if (index == 2) return base[index];
+                else if (index == 3) return base[index];
+                else if (index == 4) return base[index];
+                else if (index == 5) return base[index];
+                else if (index == 6) return ziviVSlaniVodi ? "Da" : "Ne";
+                else if (index == 7) return velikostKlesc.ToString() + " cm";
+                else return "Ta podatek ne obstaja. Izberite drugega.";
+            }
+        }
 
         public bool ZiviVSlaniVodi
         {

@@ -189,6 +189,11 @@ namespace Zival
             PodatkiZivali();
         }
 
+        private void ZivalUstvarjenaHandler(ZivalLibrary.Zival z, string ime)
+        {
+            MessageBox.Show("Ustvarili ste žival: " + ime + "\n" + z.ToString(), "Ustvarili ste žival!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
         private void ustvariZival_Click(object sender, EventArgs e)
         {
             if (stZivali == maxZivali)
@@ -208,15 +213,17 @@ namespace Zival
                 zival1.Items.Add(ime);
                 zival2.Items.Add(ime);
                 comboBoxPremakniZival.Items.Add(ime);
+                comboBoxIzberiPodatek.Items.Add(ime);
 
                 Sesalec s = new Sesalec(Teza, NaravniHabitat, Hrana, Oglasanje, LatinskoIme);
+                s.ZivalUstvarjena += ZivalUstvarjenaHandler;
+                s.KoJeZivalUstvarjena(ime);
 
                 seznamSesalcev[ns] = s;
                 seznamImen[0, ns] = ime;
                 ns++;
                 stZivali++;
 
-                MessageBox.Show("Ustvarili ste sesalca: " + ime + "\n" + s.ToString(), "Ustvarili ste sesalca!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else if (vrstaZivali.SelectedItem.ToString() == "Kopenski sesalec")
             {
@@ -233,15 +240,17 @@ namespace Zival
                 zival1.Items.Add(ime);
                 zival2.Items.Add(ime);
                 comboBoxPremakniZival.Items.Add(ime);
+                comboBoxIzberiPodatek.Items.Add(ime);
 
                 KopenskiSesalec ks = new KopenskiSesalec(Teza, NaravniHabitat, Hrana, Oglasanje, LatinskoIme, SteviloNog, ImaDlako);
+                ks.ZivalUstvarjena += ZivalUstvarjenaHandler;
+                ks.KoJeZivalUstvarjena(ime);
 
                 seznamSesalcev[ns] = ks;
                 seznamImen[0, ns] = ime;
                 ns++;
                 stZivali++;
 
-                MessageBox.Show("Ustvarili ste kopenskega sesalca: " + ime + "\n" + ks.ToString(), "Ustvarili ste kopenskega sesalca!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else if (vrstaZivali.SelectedItem.ToString() == "Vodni sesalec")
             {
@@ -259,15 +268,17 @@ namespace Zival
                 zival1.Items.Add(ime);
                 zival2.Items.Add(ime);
                 comboBoxPremakniZival.Items.Add(ime);
+                comboBoxIzberiPodatek.Items.Add(ime);
 
                 VodniSesalec vs = new VodniSesalec(Teza, NaravniHabitat, Hrana, Oglasanje, LatinskoIme, DolzinaPlavuti, SteviloPlavuti, GlobinaPotopa);
+                vs.ZivalUstvarjena += ZivalUstvarjenaHandler;
+                vs.KoJeZivalUstvarjena(ime);
 
                 seznamSesalcev[ns] = vs;
                 seznamImen[0, ns] = ime;
                 ns++;
                 stZivali++;
 
-                MessageBox.Show("Ustvarili ste vodnega sesalca: " + ime + "\n" + vs.ToString(), "Ustvarili ste vodnega sesalca!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else if (vrstaZivali.SelectedItem.ToString() == "Leteči sesalec")
             {
@@ -284,15 +295,17 @@ namespace Zival
                 zival1.Items.Add(ime);
                 zival2.Items.Add(ime);
                 comboBoxPremakniZival.Items.Add(ime);
+                comboBoxIzberiPodatek.Items.Add(ime);
 
                 LeteciSesalec ls = new LeteciSesalec(Teza, NaravniHabitat, Hrana, Oglasanje, LatinskoIme, RazponKril, MaxRazdaljaLeta);
+                ls.ZivalUstvarjena += ZivalUstvarjenaHandler;
+                ls.KoJeZivalUstvarjena(ime);
 
                 seznamSesalcev[ns] = ls;
                 seznamImen[0, ns] = ime;
                 ns++;
                 stZivali++;
 
-                MessageBox.Show("Ustvarili ste letečega sesalca: " + ime + "\n" + ls.ToString(), "Ustvarili ste letečega sesalca!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else if (vrstaZivali.SelectedItem.ToString() == "Členonožec")
             {
@@ -308,15 +321,17 @@ namespace Zival
                 zival1.Items.Add(ime);
                 zival2.Items.Add(ime);
                 comboBoxPremakniZival.Items.Add(ime);
+                comboBoxIzberiPodatek.Items.Add(ime);
 
                 Clenonozci c = new Clenonozci(Teza, NaravniHabitat, Hrana, Oglasanje, LatinskoIme, SteviloNog);
+                c.ZivalUstvarjena += ZivalUstvarjenaHandler;
+                c.KoJeZivalUstvarjena(ime);
 
                 seznamClenonozcev[nc] = c;
                 seznamImen[1, nc] = ime;
                 nc++;
                 stZivali++;
 
-                MessageBox.Show("Ustvarili ste členonožca: " + ime + "\n" + c.ToString(), "Ustvarili ste členonožca!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else if (vrstaZivali.SelectedItem.ToString() == "Žuželka")
             {
@@ -333,17 +348,18 @@ namespace Zival
                 zival1.Items.Add(ime);
                 zival2.Items.Add(ime);
                 comboBoxPremakniZival.Items.Add(ime);
+                comboBoxIzberiPodatek.Items.Add(ime);
 
                 Zuzelke z = new Zuzelke(Teza, NaravniHabitat, Hrana, Oglasanje, LatinskoIme, SteviloNog, Leti);
+                z.ZivalUstvarjena += ZivalUstvarjenaHandler;
+                z.KoJeZivalUstvarjena(ime);
 
                 seznamClenonozcev[nc] = z;
                 seznamImen[1, nc] = ime;
                 nc++;
                 stZivali++;
 
-                MessageBox.Show("Ustvarili ste žuželko: " + ime + "\n" + z.ToString(), "Ustvarili ste žuželko!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-
             else if (vrstaZivali.SelectedItem.ToString() == "Pajkovec")
             {
                 double Teza = Convert.ToDouble(podatkiZivali.Rows[0].Cells["colTeza"].Value);
@@ -360,15 +376,17 @@ namespace Zival
                 zival1.Items.Add(ime);
                 zival2.Items.Add(ime);
                 comboBoxPremakniZival.Items.Add(ime);
+                comboBoxIzberiPodatek.Items.Add(ime);
 
                 Pajkovci p = new Pajkovci(Teza, NaravniHabitat, Hrana, Oglasanje, LatinskoIme, SteviloNog, Strupen, PleteMrezo);
+                p.ZivalUstvarjena += ZivalUstvarjenaHandler;
+                p.KoJeZivalUstvarjena(ime);
 
                 seznamClenonozcev[nc] = p;
                 seznamImen[1, nc] = ime;
                 nc++;
                 stZivali++;
 
-                MessageBox.Show("Ustvarili ste pajkovca: " + ime + "\n" + p.ToString(), "Ustvarili ste pajkovca!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else if (vrstaZivali.SelectedItem.ToString() == "Rak")
             {
@@ -386,20 +404,21 @@ namespace Zival
                 zival1.Items.Add(ime);
                 zival2.Items.Add(ime);
                 comboBoxPremakniZival.Items.Add(ime);
+                comboBoxIzberiPodatek.Items.Add(ime);
 
                 Raki r = new Raki(Teza, NaravniHabitat, Hrana, Oglasanje, LatinskoIme, SteviloNog, ZiviVSlaniVodi, VelikostKlesc);
+                r.ZivalUstvarjena += ZivalUstvarjenaHandler;
+                r.KoJeZivalUstvarjena(ime);
 
                 seznamClenonozcev[nc] = r;
                 seznamImen[1, nc] = ime;
                 nc++;
                 stZivali++;
 
-                MessageBox.Show("Ustvarili ste raka: " + ime + "\n" + r.ToString(), "Ustvarili ste raka!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
             ustvariZival.Enabled = false;
             vrstaZivali.Enabled = true;
-
             podatkiZivali.Columns.Clear();
             imeZivali.Clear();
             vrstaZivali.Text = "";
@@ -546,8 +565,11 @@ namespace Zival
                 }
             }
 
-            if (preverjanje == true) glasZivali.Text = seznamSesalcev[pozicijaImena].Oglasanje;
-            else glasZivali.Text = seznamClenonozcev[pozicijaImena].Oglasanje;
+            OglasanjeZivali delegat;
+            delegat = z => z.Oglasanje;
+
+            if (preverjanje) glasZivali.Text = delegat(seznamSesalcev[pozicijaImena]);
+            else glasZivali.Text = delegat(seznamClenonozcev[pozicijaImena]);
         }
 
         private void btnIzvoz_Click(object sender, EventArgs e)
@@ -651,6 +673,40 @@ namespace Zival
 
             if (preverjanje == true) txtPremakniSe.Text = seznamSesalcev[pozicijaImena].PremakniSe();
             else txtPremakniSe.Text = seznamClenonozcev[pozicijaImena].PremakniSe();
+        }
+
+        private void btnIzpisPodatka_Click(object sender, EventArgs e)
+        {
+            string izbranaZival = comboBoxIzberiPodatek.SelectedItem.ToString();
+            bool preverjanje = false;
+            int pozicijaImena = 0;
+
+            for (int i = 0; i < seznamImen.GetLength(0); i++)
+            {
+                if (seznamImen[0, i] == izbranaZival)
+                {
+                    pozicijaImena = i;
+                    preverjanje = true;
+                    break;
+                }
+            }
+
+            if (preverjanje == false)
+            {
+                for (int i = 0; i < seznamImen.GetLength(1); i++)
+                {
+                    if (seznamImen[1, i] == izbranaZival)
+                    {
+                        pozicijaImena = i;
+                        break;
+                    }
+                }
+            }
+
+            int index = comboBoxPodatekZivali.SelectedIndex;
+
+            if (preverjanje == true) txtPodatek.Text = seznamSesalcev[pozicijaImena][index];
+            else txtPodatek.Text = seznamClenonozcev[pozicijaImena][index];
         }
     }
 }

@@ -46,7 +46,7 @@
     <Reference Include="System.Xml" />
     <Reference Include="ZivalLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\ZivalLibrary.dll</HintPath>
+      <HintPath>ZivalLibrary\bin\Debug\ZivalLibrary.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

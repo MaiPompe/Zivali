@@ -22,3 +22,17 @@ C:\Users\maipo\OneDrive\Dokumenti\Zival\obj\Debug\Zival.csproj.Up2Date
 C:\Users\maipo\OneDrive\Dokumenti\Zival\obj\Debug\Zival.exe
 C:\Users\maipo\OneDrive\Dokumenti\Zival\obj\Debug\Zival.pdb
 C:\Users\maipo\OneDrive\Dokumenti\Zival\obj\Debug\Zival.exe.config
+C:\Users\maipo\OneDrive\Dokumenti\Zivali\Zival\obj\Debug\Zival.csproj.AssemblyReference.cache
+C:\Users\maipo\OneDrive\Dokumenti\Zivali\Zival\obj\Debug\Zival.Form1.resources
+C:\Users\maipo\OneDrive\Dokumenti\Zivali\Zival\obj\Debug\Zival.Properties.Resources.resources
+C:\Users\maipo\OneDrive\Dokumenti\Zivali\Zival\obj\Debug\Zival.csproj.GenerateResource.cache
+C:\Users\maipo\OneDrive\Dokumenti\Zivali\Zival\obj\Debug\Zival.csproj.CoreCompileInputs.cache
+C:\Users\maipo\OneDrive\Dokumenti\Zivali\Zival\obj\Debug\Zival.exe
+C:\Users\maipo\OneDrive\Dokumenti\Zivali\Zival\obj\Debug\Zival.pdb
+C:\Users\maipo\OneDrive\Dokumenti\Zivali\Zival\bin\Debug\Zival.exe.config
+C:\Users\maipo\OneDrive\Dokumenti\Zivali\Zival\bin\Debug\Zival.exe
+C:\Users\maipo\OneDrive\Dokumenti\Zivali\Zival\bin\Debug\Zival.pdb
+C:\Users\maipo\OneDrive\Dokumenti\Zivali\Zival\obj\Debug\Zival.csproj.Up2Date
+C:\Users\maipo\OneDrive\Dokumenti\Zivali\Zival\bin\Debug\ZivalLibrary.dll
+C:\Users\maipo\OneDrive\Dokumenti\Zivali\Zival\bin\Debug\ZivalLibrary.pdb
+C:\Users\maipo\OneDrive\Dokumenti\Zivali\Zival\obj\Debug\Zival.exe.config

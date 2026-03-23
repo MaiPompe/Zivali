@@ -56,9 +56,19 @@
             this.zival2 = new System.Windows.Forms.ComboBox();
             this.zival1 = new System.Windows.Forms.ComboBox();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
-            this.comboBoxPremakniZival = new System.Windows.Forms.ComboBox();
-            this.btnPremakniZival = new System.Windows.Forms.Button();
             this.txtPremakniSe = new System.Windows.Forms.TextBox();
+            this.btnPremakniZival = new System.Windows.Forms.Button();
+            this.comboBoxPremakniZival = new System.Windows.Forms.ComboBox();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.comboBoxIzberiPodatek = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.comboBoxPodatekZivali = new System.Windows.Forms.ComboBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.btnIzpisPodatka = new System.Windows.Forms.Button();
+            this.txtPodatek = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.podatkiZivali)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -66,6 +76,7 @@
             this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox7.SuspendLayout();
+            this.groupBox6.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -339,6 +350,8 @@
             // groupBox5
             // 
             this.groupBox5.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.groupBox5.Controls.Add(this.label7);
+            this.groupBox5.Controls.Add(this.label6);
             this.groupBox5.Controls.Add(this.btnPrimerjaj);
             this.groupBox5.Controls.Add(this.zival2);
             this.groupBox5.Controls.Add(this.zival1);
@@ -379,28 +392,29 @@
             // groupBox7
             // 
             this.groupBox7.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.groupBox7.Controls.Add(this.label8);
             this.groupBox7.Controls.Add(this.txtPremakniSe);
             this.groupBox7.Controls.Add(this.btnPremakniZival);
             this.groupBox7.Controls.Add(this.comboBoxPremakniZival);
             this.groupBox7.Location = new System.Drawing.Point(794, 267);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(378, 131);
+            this.groupBox7.Size = new System.Drawing.Size(378, 150);
             this.groupBox7.TabIndex = 6;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Premakni žival";
             // 
-            // comboBoxPremakniZival
+            // txtPremakniSe
             // 
-            this.comboBoxPremakniZival.FormattingEnabled = true;
-            this.comboBoxPremakniZival.Location = new System.Drawing.Point(23, 40);
-            this.comboBoxPremakniZival.Name = "comboBoxPremakniZival";
-            this.comboBoxPremakniZival.Size = new System.Drawing.Size(175, 24);
-            this.comboBoxPremakniZival.TabIndex = 4;
+            this.txtPremakniSe.Location = new System.Drawing.Point(23, 109);
+            this.txtPremakniSe.Name = "txtPremakniSe";
+            this.txtPremakniSe.ReadOnly = true;
+            this.txtPremakniSe.Size = new System.Drawing.Size(323, 22);
+            this.txtPremakniSe.TabIndex = 7;
             // 
             // btnPremakniZival
             // 
             this.btnPremakniZival.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.btnPremakniZival.Location = new System.Drawing.Point(228, 40);
+            this.btnPremakniZival.Location = new System.Drawing.Point(228, 65);
             this.btnPremakniZival.Name = "btnPremakniZival";
             this.btnPremakniZival.Size = new System.Drawing.Size(118, 23);
             this.btnPremakniZival.TabIndex = 6;
@@ -408,19 +422,125 @@
             this.btnPremakniZival.UseVisualStyleBackColor = false;
             this.btnPremakniZival.Click += new System.EventHandler(this.btnPremakniZival_Click);
             // 
-            // txtPremakniSe
+            // comboBoxPremakniZival
             // 
-            this.txtPremakniSe.Location = new System.Drawing.Point(23, 84);
-            this.txtPremakniSe.Name = "txtPremakniSe";
-            this.txtPremakniSe.ReadOnly = true;
-            this.txtPremakniSe.Size = new System.Drawing.Size(323, 22);
-            this.txtPremakniSe.TabIndex = 7;
+            this.comboBoxPremakniZival.FormattingEnabled = true;
+            this.comboBoxPremakniZival.Location = new System.Drawing.Point(23, 53);
+            this.comboBoxPremakniZival.Name = "comboBoxPremakniZival";
+            this.comboBoxPremakniZival.Size = new System.Drawing.Size(175, 24);
+            this.comboBoxPremakniZival.TabIndex = 4;
+            // 
+            // groupBox6
+            // 
+            this.groupBox6.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.groupBox6.Controls.Add(this.txtPodatek);
+            this.groupBox6.Controls.Add(this.btnIzpisPodatka);
+            this.groupBox6.Controls.Add(this.label10);
+            this.groupBox6.Controls.Add(this.comboBoxPodatekZivali);
+            this.groupBox6.Controls.Add(this.label9);
+            this.groupBox6.Controls.Add(this.comboBoxIzberiPodatek);
+            this.groupBox6.Location = new System.Drawing.Point(12, 423);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(1160, 83);
+            this.groupBox6.TabIndex = 7;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "Izpiši podatek";
+            // 
+            // comboBoxIzberiPodatek
+            // 
+            this.comboBoxIzberiPodatek.FormattingEnabled = true;
+            this.comboBoxIzberiPodatek.Location = new System.Drawing.Point(23, 37);
+            this.comboBoxIzberiPodatek.Name = "comboBoxIzberiPodatek";
+            this.comboBoxIzberiPodatek.Size = new System.Drawing.Size(175, 24);
+            this.comboBoxIzberiPodatek.TabIndex = 8;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(20, 24);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(46, 16);
+            this.label6.TabIndex = 6;
+            this.label6.Text = "Žival 1";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(20, 70);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(46, 16);
+            this.label7.TabIndex = 7;
+            this.label7.Text = "Žival 2";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(20, 34);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(219, 16);
+            this.label8.TabIndex = 4;
+            this.label8.Text = "Izberi žival, ki želiš, da se premakne";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(20, 18);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(69, 16);
+            this.label9.TabIndex = 8;
+            this.label9.Text = "Izberi žival";
+            // 
+            // comboBoxPodatekZivali
+            // 
+            this.comboBoxPodatekZivali.FormattingEnabled = true;
+            this.comboBoxPodatekZivali.Items.AddRange(new object[] {
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7"});
+            this.comboBoxPodatekZivali.Location = new System.Drawing.Point(236, 37);
+            this.comboBoxPodatekZivali.Name = "comboBoxPodatekZivali";
+            this.comboBoxPodatekZivali.Size = new System.Drawing.Size(175, 24);
+            this.comboBoxPodatekZivali.TabIndex = 9;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(233, 18);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(92, 16);
+            this.label10.TabIndex = 10;
+            this.label10.Text = "Izberi podatek";
+            // 
+            // btnIzpisPodatka
+            // 
+            this.btnIzpisPodatka.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnIzpisPodatka.Location = new System.Drawing.Point(461, 37);
+            this.btnIzpisPodatka.Name = "btnIzpisPodatka";
+            this.btnIzpisPodatka.Size = new System.Drawing.Size(118, 23);
+            this.btnIzpisPodatka.TabIndex = 8;
+            this.btnIzpisPodatka.Text = "Izpiši podatek";
+            this.btnIzpisPodatka.UseVisualStyleBackColor = false;
+            this.btnIzpisPodatka.Click += new System.EventHandler(this.btnIzpisPodatka_Click);
+            // 
+            // txtPodatek
+            // 
+            this.txtPodatek.Location = new System.Drawing.Point(636, 37);
+            this.txtPodatek.Name = "txtPodatek";
+            this.txtPodatek.ReadOnly = true;
+            this.txtPodatek.Size = new System.Drawing.Size(187, 22);
+            this.txtPodatek.TabIndex = 11;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1184, 429);
+            this.ClientSize = new System.Drawing.Size(1184, 518);
+            this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.groupBox7);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);
@@ -440,8 +560,11 @@
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -479,6 +602,16 @@
         private System.Windows.Forms.Button btnPremakniZival;
         private System.Windows.Forms.ComboBox comboBoxPremakniZival;
         private System.Windows.Forms.TextBox txtPremakniSe;
+        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.ComboBox comboBoxIzberiPodatek;
+        private System.Windows.Forms.TextBox txtPodatek;
+        private System.Windows.Forms.Button btnIzpisPodatka;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.ComboBox comboBoxPodatekZivali;
     }
 }
 

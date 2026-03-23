@@ -10,3 +10,9 @@ C:\Users\maipo\OneDrive\Dokumenti\Zival\ZivalLibrary\obj\Debug\ZivalLibrary.cspr
 C:\Users\maipo\OneDrive\Dokumenti\Zival\ZivalLibrary\obj\Debug\ZivalLibrary.csproj.CoreCompileInputs.cache
 C:\Users\maipo\OneDrive\Dokumenti\Zival\ZivalLibrary\obj\Debug\ZivalLibrary.dll
 C:\Users\maipo\OneDrive\Dokumenti\Zival\ZivalLibrary\obj\Debug\ZivalLibrary.pdb
+C:\Users\maipo\OneDrive\Dokumenti\Zivali\Zival\ZivalLibrary\bin\Debug\ZivalLibrary.dll
+C:\Users\maipo\OneDrive\Dokumenti\Zivali\Zival\ZivalLibrary\bin\Debug\ZivalLibrary.pdb
+C:\Users\maipo\OneDrive\Dokumenti\Zivali\Zival\ZivalLibrary\obj\Debug\ZivalLibrary.csproj.AssemblyReference.cache
+C:\Users\maipo\OneDrive\Dokumenti\Zivali\Zival\ZivalLibrary\obj\Debug\ZivalLibrary.csproj.CoreCompileInputs.cache
+C:\Users\maipo\OneDrive\Dokumenti\Zivali\Zival\ZivalLibrary\obj\Debug\ZivalLibrary.dll
+C:\Users\maipo\OneDrive\Dokumenti\Zivali\Zival\ZivalLibrary\obj\Debug\ZivalLibrary.pdb
