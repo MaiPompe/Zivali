@@ -36,3 +36,4 @@ C:\Users\maipo\OneDrive\Dokumenti\Zivali\Zival\obj\Debug\Zival.csproj.Up2Date
 C:\Users\maipo\OneDrive\Dokumenti\Zivali\Zival\bin\Debug\ZivalLibrary.dll
 C:\Users\maipo\OneDrive\Dokumenti\Zivali\Zival\bin\Debug\ZivalLibrary.pdb
 C:\Users\maipo\OneDrive\Dokumenti\Zivali\Zival\obj\Debug\Zival.exe.config
+C:\Users\maipo\OneDrive\Dokumenti\Zivali\Zival\bin\Debug\Zival.xml

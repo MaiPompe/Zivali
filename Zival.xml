@@ -1,0 +1,117 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Zival</name>
+    </assembly>
+    <members>
+        <member name="M:Zival.Form1.PodatkiZivali">
+            <summary>
+            Pripravi vrstico v tabeli podatkiZivali za vnos podatkov in postavi fokus na polje imeZivali.
+            </summary>
+        </member>
+        <member name="M:Zival.Form1.Izvoz">
+            <summary>
+            Izvozi podatke o živalih v datoteko zivali.txt v mapi Downloads, glede na izbrani radio gumb.
+            </summary>
+        </member>
+        <member name="M:Zival.Form1.vrstaZivali_SelectedIndexChanged(System.Object,System.EventArgs)">
+            <summary>
+            Glede na izbrano vrsto živali doda ustrezne stolpce v tabelo podatkiZivali in aktivira gumb za ustvarjanje živali.
+            </summary>
+        </member>
+        <member name="M:Zival.Form1.ZivalUstvarjenaHandler(ZivalLibrary.Zival,System.String)">
+            <summary>
+            Metoda dogodka ZivalUstvarjena. Ob ustvaritvi živali prikaže Message Box z imenom in podatki ustvarjene živali.
+            </summary>
+            <param name="z">Ustvarjena žival.</param>
+            <param name="ime">Ime ustvarjene živali.</param>
+        </member>
+        <member name="M:Zival.Form1.ustvariZival_Click(System.Object,System.EventArgs)">
+            <summary>
+            Prebere podatke iz tabele podatkiZivali in ustvari ustrezeno živali glede na izbrano vrsto, nato jo doda v 
+            ustrezna polja ter sproži dogodek ZivalUstvarjena.
+            Po uspešnem ustvarjanju ponastavi obrazec za naslednji vnos.
+            </summary>
+        </member>
+        <member name="M:Zival.Form1.comboBox1_SelectedIndexChanged(System.Object,System.EventArgs)">
+            <summary>
+            Aktivira gumb izpisZivali in onemogoči spustni seznam med izpisom.
+            </summary>
+        </member>
+        <member name="M:Zival.Form1.izpisZivali_Click(System.Object,System.EventArgs)">
+            <summary>
+            Izpiše vse živali in podatke izbrane vrste v listBox1.
+            </summary>
+        </member>
+        <member name="M:Zival.Form1.zivali_SelectedIndexChanged(System.Object,System.EventArgs)">
+            <summary>
+            Aktivira gumb oglasanjeZivali in onemogoči seznam med izvajanjem.
+            </summary>
+        </member>
+        <member name="M:Zival.Form1.oglasanjeZivali_Click(System.Object,System.EventArgs)">
+            <summary>
+            Poišče izbrano žival v poljih in s pomočjo delegata OglasanjeZivali izpiše njeno oglašanje v polju glasZivali.
+            </summary>
+        </member>
+        <member name="M:Zival.Form1.btnIzvoz_Click(System.Object,System.EventArgs)">
+            <summary>
+            Pokliče metodo Izvoz() in prikaže Message Box ob uspešnem izvozu.
+            </summary>
+        </member>
+        <member name="M:Zival.Form1.btnPrimerjaj_Click(System.Object,System.EventArgs)">
+            <summary>
+            Poišče obe izbrani živali v poljih in primerja njuni teži.
+            Rezultat primerjave prikaže v Message Box-u.
+            </summary>
+        </member>
+        <member name="M:Zival.Form1.btnPremakniZival_Click(System.Object,System.EventArgs)">
+            <summary>
+            Poišče izbrano žival v poljih in v polje txtPremakniSe izpiše rezultat klica metode PremakniSe() za to žival.
+            </summary>
+        </member>
+        <member name="M:Zival.Form1.btnIzpisPodatka_Click(System.Object,System.EventArgs)">
+            <summary>
+            Poišče izbrano žival in s pomočjo indekserja prikaže ustrezen podatek živali v polju txtPodatek.
+            Če podatka ni se v polje txtPodatek izpiše "Ta podatek ne obstaja. Izberite drugega.".
+            </summary>
+        </member>
+        <member name="F:Zival.Form1.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:Zival.Form1.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Zival.Form1.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:Zival.Program.Main">
+            <summary>
+            The main entry point for the application.
+            </summary>
+        </member>
+        <member name="T:Zival.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Zival.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Zival.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,381 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ZivalLibrary</name>
+    </assembly>
+    <members>
+        <member name="T:ZivalLibrary.IZival">
+            <summary>
+            Osnoven vmesnik za vse živali. Določa skupne lastnosti, ki jih mora implementirati vsaka žival.
+            </summary>
+        </member>
+        <member name="T:ZivalLibrary.ISesalec">
+            <summary>
+            Vmesnik za sesalce. Deduje vse lastnosti vmesnika IZival.
+            </summary>
+        </member>
+        <member name="T:ZivalLibrary.IKopenskiSesalec">
+            <summary>
+            Vmesnik za kopenske sesalce z dodanimi lastnostmi, ki jih deduje od ISesalec.
+            </summary>
+        </member>
+        <member name="T:ZivalLibrary.IVodniSesalec">
+            <summary>
+            Vmesnik za vodne sesalce z dodanimi lastnostmi, ki jih deduje od ISesalec.
+            </summary>
+        </member>
+        <member name="T:ZivalLibrary.ILeteciSesalec">
+            <summary>
+            Vmesnik za leteče sesalce z dodanimi lastnostmi, ki jih deduje od ISesalec.
+            </summary>
+        </member>
+        <member name="T:ZivalLibrary.IClenonozci">
+            <summary>
+            Vmesnik za členonožce. Deduje lastnosti vmesnika IZival.
+            </summary>
+        </member>
+        <member name="T:ZivalLibrary.IZuzelke">
+            <summary>
+            Vmesnik za žuželke z dodanimi lastnostmi, ki jih deduje od IClenonozci.
+            </summary>
+        </member>
+        <member name="T:ZivalLibrary.IPajkovci">
+            <summary>
+            Vmesnik za pajkovce z dodanimi lastnostmi, ki jih deduje od IClenonozci.
+            </summary>
+        </member>
+        <member name="T:ZivalLibrary.IRaki">
+            <summary>
+            Vmesnik za rake z dodanimi lastnostmi, ki jih deduje od IClenonozci.
+            </summary>
+        </member>
+        <member name="T:ZivalLibrary.OglasanjeZivali">
+            <summary>
+            Delegat za metodo, ki vrne oglašanje živali.
+            </summary>
+            <param name="z">Žival, ki se oglaša.</param>
+            <returns>Niz z oglašanjem živali.</returns>
+        </member>
+        <member name="T:ZivalLibrary.ZivalUstvarjenaEventHandler">
+            <summary>
+            Delegat za dogodek, ki se sproži ob ustvarjanju nove živali.
+            </summary>
+            <param name="z">Ustvarjena žival.</param>
+            <param name="ime">Ime ustvarjene živali.</param>
+        </member>
+        <member name="E:ZivalLibrary.Zival.ZivalUstvarjena">
+            <summary>
+            Dogodek, ki se sproži, ko je žival ustvarjena.
+            </summary>
+        </member>
+        <member name="M:ZivalLibrary.Zival.KoJeZivalUstvarjena(System.String)">
+            <summary>
+            Sproži dogodek ZivalUstvarjena z imenom živali.
+            </summary>
+            <param name="ime">Ime ustvarjene živali.</param>
+        </member>
+        <member name="P:ZivalLibrary.Zival.Item(System.Int32)">
+            <summary>
+            Indekser, ki omogoča dostop do podatkov živali po indeksu.
+            </summary>
+            <param name="index">Indeks podatka živali</param>
+            <returns>Podatek na indeksu ali sporočilo o napaki za neveljaven indeks.</returns>
+        </member>
+        <member name="M:ZivalLibrary.Zival.#ctor(System.Double,System.String,System.String,System.String,System.String)">
+            <summary>
+            Ustvari nov primerek razreda Zival.
+            </summary>
+            <param name="teza">Teža živali v kg.</param>
+            <param name="naravniHabitat">Naravni habitat živali.</param>
+            <param name="hrana">Vrsta hrane živali.</param>
+            <param name="oglasanje">Oglašanje živali.</param>
+            <param name="latinskoIme">Latinsko ime živali.</param>
+        </member>
+        <member name="M:ZivalLibrary.Zival.OglasiSe(ZivalLibrary.Zival)">
+            <summary>
+            Izpiše oglašanje živali.
+            </summary>
+            <param name="z">Žival, katere oglašanje se izpiše.</param>
+        </member>
+        <member name="M:ZivalLibrary.Zival.PremakniSe">
+            <summary>
+            Metoda, ki omogoča premikanje živali.
+            </summary>
+            <returns>"Žival se premika"</returns>
+        </member>
+        <member name="M:ZivalLibrary.Zival.ToString">
+            <summary>
+            Vrne vse podatke živali v oblikovanem nizu.
+            </summary>
+            <returns>Oblikovan niz z vsemi podatki živali.</returns>
+        </member>
+        <member name="M:ZivalLibrary.Zival.Finalize">
+            <summary>
+            Destruktor razreda Zival.
+            </summary>
+        </member>
+        <member name="M:ZivalLibrary.Sesalec.#ctor(System.Double,System.String,System.String,System.String,System.String)">
+            <summary>
+            Ustvari nov primerek razreda Sesalec.
+            </summary>
+            <param name="teza">Teža sesalca v kg.</param>
+            <param name="naravniHabitat">Naravni habitat sesalca.</param>
+            <param name="hrana">Vrsta hrane sesalca.</param>
+            <param name="oglasanje">Oglašanje sesalca.</param>
+            <param name="latinskoIme">Latinsko ime sesalca.</param>
+        </member>
+        <member name="P:ZivalLibrary.Sesalec.Item(System.Int32)">
+            <summary>
+            Indekser, ki omogoča dostop do podatkov sesalca po indeksu.
+            </summary>
+            <param name="index">Indeks podatka</param>
+            <returns>Podatek sesalca na tem indeksu</returns>
+        </member>
+        <member name="M:ZivalLibrary.Sesalec.ToString">
+            <summary>
+            Vrne oblikovan niz s podatki sesalca.
+            </summary>
+        </member>
+        <member name="M:ZivalLibrary.Sesalec.op_GreaterThan(ZivalLibrary.Sesalec,ZivalLibrary.Sesalec)">
+            <summary>
+            Primerja dva sesalca po teži.
+            </summary>
+            <param name="s1">Prvi sesalec.</param>
+            <param name="s2">Drugi sesalec.</param>
+            <returns>True če je prvi sesalec težji od drugega, drugače false</returns>
+        </member>
+        <member name="M:ZivalLibrary.Sesalec.PremakniSe">
+            <summary>
+            Metoda, ki omogoča premikanje sesalca.
+            </summary>
+            <returns>"Sesalec + latinsko ime sesalce + se premika"</returns>
+        </member>
+        <member name="P:ZivalLibrary.KopenskiSesalec.Item(System.Int32)">
+            <summary>
+            Indekser za dostop do podatkov kopenskega sesalca po indeksu.
+            </summary>
+            <param name="index">Indeks podatka</param>
+            <returns>Podatek na indeksu</returns>
+        </member>
+        <member name="M:ZivalLibrary.KopenskiSesalec.#ctor(System.Double,System.String,System.String,System.String,System.String,System.Int32,System.Boolean)">
+            <summary>
+            Ustvari nov primerek razreda KopenskiSesalec.
+            </summary>
+            <param name="teza">Teža v kg.</param>
+            <param name="naravniHabitat">Naravni habitat.</param>
+            <param name="hrana">Vrsta hrane.</param>
+            <param name="oglasanje">Oglašanje.</param>
+            <param name="latinskoIme">Latinsko ime.</param>
+            <param name="steviloNog">Število nog.</param>
+            <param name="imaDlako">Ali ima žival dlako (true/false).</param>
+        </member>
+        <member name="M:ZivalLibrary.KopenskiSesalec.ToString">
+            <summary>
+            Vrne oblikovan niz podatkov kopenskega sesalca
+            </summary>
+            <returns>Oblikovan niz s podatki kopenskega sesalca</returns>
+        </member>
+        <member name="M:ZivalLibrary.KopenskiSesalec.PremakniSe">
+            <summary>
+            Metoda, ki omogoča premikanje kopenskega sesalca.
+            </summary>
+            <returns>Kopenski sesalec + latinsko ime kopenskega sesalca + hodi</returns>
+        </member>
+        <member name="P:ZivalLibrary.VodniSesalec.Item(System.Int32)">
+            <summary>
+            Indekser za dostop do podatkov vodnega sesalca po indeksu.
+            </summary>
+            <param name="index">Indeks podatka</param>
+            <returns>Podatek na indeksu</returns>
+        </member>
+        <member name="M:ZivalLibrary.VodniSesalec.#ctor(System.Double,System.String,System.String,System.String,System.String,System.Double,System.Int32,System.Double)">
+            <summary>
+            Inicializira nov primerek razreda VodniSesalec.
+            </summary>
+            <param name="teza">Teža v kg.</param>
+            <param name="naravniHabitat">Naravni habitat.</param>
+            <param name="hrana">Vrsta hrane.</param>
+            <param name="oglasanje">Oglkašanje živali.</param>
+            <param name="latinskoIme">Latinsko ime.</param>
+            <param name="dolzinaPlavuti">Dolžina plavuti v cm.</param>
+            <param name="steviloPlavuti">Število plavuti.</param>
+            <param name="globinaPotopa">Globina potopa v cm.</param>
+        </member>
+        <member name="M:ZivalLibrary.VodniSesalec.ToString">
+            <summary>
+            Vrne oblikovan niz podatkov vodnega sesalca.
+            </summary>
+            <returns>Oblikovan niz s podatki vodnega sesalca.</returns>
+        </member>
+        <member name="M:ZivalLibrary.VodniSesalec.PremakniSe">
+            <summary>
+            Metoda, ki omogoča premikanje vodnega sesalca.
+            </summary>
+            <returns>Vodni sesalec + latinsko ime vodnega sesalce + plava</returns>
+        </member>
+        <member name="P:ZivalLibrary.LeteciSesalec.Item(System.Int32)">
+            <summary>
+            Indekser, ki omogoča dostop do podatkov letečega sesalca po indeksu.
+            </summary>
+            <param name="index">Indeks podatka</param>
+            <returns>Podatek na indeksu</returns>
+        </member>
+        <member name="M:ZivalLibrary.LeteciSesalec.#ctor(System.Double,System.String,System.String,System.String,System.String,System.Double,System.Double)">
+            <summary>
+            Ustvari nov primerek razreda LeteciSesalec.
+            </summary>
+            <param name="teza">Teža v kg.</param>
+            <param name="naravniHabitat">Naravni habitat.</param>
+            <param name="hrana">Vrsta hrane.</param>
+            <param name="oglasanje">Oglašanje.</param>
+            <param name="latinskoIme">Latinsko ime.</param>
+            <param name="razponKril">Razpon kril v cm.</param>
+            <param name="maxRazdaljaLeta">Maksimalna razdalja leta v km.</param>
+        </member>
+        <member name="M:ZivalLibrary.LeteciSesalec.ToString">
+            <summary>
+            Vrne oblikovan niz podatkov letečega sesalca.
+            </summary>
+            <returns>Oblikovan niz podatkov</returns>
+        </member>
+        <member name="M:ZivalLibrary.LeteciSesalec.PremakniSe">
+            <summary>
+            Metoda, ki omogoča premikanje letečega sesalca.
+            </summary>
+            <returns>Leteci sesalec + latinsko ime letecega sesalca + leti</returns>
+        </member>
+        <member name="P:ZivalLibrary.Clenonozci.Item(System.Int32)">
+            <summary>
+            Indekser, ki omogoča dostop do podatkov členonožca po indeksu.
+            </summary>
+            <param name="index">Indeks podatka</param>
+            <returns>Podatek na ustreznem indeksu</returns>
+        </member>
+        <member name="M:ZivalLibrary.Clenonozci.#ctor(System.Double,System.String,System.String,System.String,System.String,System.Int32)">
+            <summary>
+            Ustvari nov primerek razreda Clenonozci.
+            </summary>
+            <param name="teza">Teža v kg.</param>
+            <param name="naravniHabitat">Naravni habitat.</param>
+            <param name="hrana">Vrsta hrane.</param>
+            <param name="oglasanje">Oglašanje</param>
+            <param name="latinskoIme">Latinsko ime.</param>
+            <param name="steviloNog">Število nog.</param>
+        </member>
+        <member name="M:ZivalLibrary.Clenonozci.ToString">
+            <summary>
+            Vrne oblikovan niz podatkov členonožca.
+            </summary>
+            <returns>Oblikovan nit podatkov členonozca</returns>
+        </member>
+        <member name="M:ZivalLibrary.Clenonozci.op_GreaterThan(ZivalLibrary.Clenonozci,ZivalLibrary.Clenonozci)">
+            <summary>
+            Primerja težo dveh členonožcev.
+            </summary>
+            <param name="c1">Členonožec 1</param>
+            <param name="c2">Členonožec 2</param>
+            <returns>True, če je prvi členonožec težji od drugega, drugače false</returns>
+        </member>
+        <member name="M:ZivalLibrary.Clenonozci.PremakniSe">
+            <summary>
+            Metoda, ki omogoča premikanje členonožca.
+            </summary>
+            <returns>Členonožec + latinsko ime členonožca + se premika</returns>
+        </member>
+        <member name="P:ZivalLibrary.Zuzelke.Item(System.Int32)">
+            <summary>
+            Indekser, ki omogoča dostop do podatkov žuželke po indeksu.
+            </summary>
+            <param name="index">Indeks podatka</param>
+            <returns>Podatek na indeksu</returns>
+        </member>
+        <member name="M:ZivalLibrary.Zuzelke.#ctor(System.Double,System.String,System.String,System.String,System.String,System.Int32,System.Boolean)">
+            <summary>
+            Ustvari nov primerek razreda Zuzelke.
+            </summary>
+            <param name="teza">Teža v kg.</param>
+            <param name="naravniHabitat">Naravni habitat.</param>
+            <param name="hrana">Vrsta hrane.</param>
+            <param name="oglasanje">Oglašanje</param>
+            <param name="latinskoIme">Latinsko ime.</param>
+            <param name="steviloNog">Število nog.</param>
+            <param name="leti">Ali žuželka leti.</param>
+        </member>
+        <member name="M:ZivalLibrary.Zuzelke.ToString">
+            <summary>
+            Vrne oblikovan niz podatkov žuželke.
+            </summary>
+            <returns>Oblikovan niz podatkov žuželke</returns>
+        </member>
+        <member name="M:ZivalLibrary.Zuzelke.PremakniSe">
+            <summary>
+            Metoda, ki omogoča premikanje žuželke.
+            </summary>
+            <returns>Če žuželka leti "Žuželka  + latinsko ime žuželke + leti", drugače "-=- se plazi"</returns>
+        </member>
+        <member name="P:ZivalLibrary.Pajkovci.Item(System.Int32)">
+            <summary>
+            Indekser, ki omogoča dostop do podatkov pajkovca po indeksu.
+            </summary>
+            <param name="index">Indeks podatka</param>
+            <returns>Podatek na indeksu</returns>
+        </member>
+        <member name="M:ZivalLibrary.Pajkovci.#ctor(System.Double,System.String,System.String,System.String,System.String,System.Int32,System.Boolean,System.Boolean)">
+            <summary>
+            Ustvari nov primerek razreda Pajkovci.
+            </summary>
+            <param name="teza">Teža v kg.</param>
+            <param name="naravniHabitat">Naravni habitat.</param>
+            <param name="hrana">Vrsta hrane.</param>
+            <param name="oglasanje">Oglašanje.</param>
+            <param name="latinskoIme">Latinsko ime.</param>
+            <param name="steviloNog">Število nog.</param>
+            <param name="strupen">Ali je pajkovec strupen.</param>
+            <param name="pleteMrezo">Ali pajkovec plete mrežo.</param>
+        </member>
+        <member name="M:ZivalLibrary.Pajkovci.ToString">
+            <summary>
+            Vrne oblikovan niz podatkov pajkovca.
+            </summary>
+            <returns>Oblikovan niz podatkov pajkovca</returns>
+        </member>
+        <member name="M:ZivalLibrary.Pajkovci.PremakniSe">
+            <summary>
+            Metoda, ki omogoča premikanje pajkovca.
+            </summary>
+            <returns>Pajkovec + latinsko ime pajkovca + se plazi</returns>
+        </member>
+        <member name="P:ZivalLibrary.Raki.Item(System.Int32)">
+            <summary>
+            Indekser, ki omogoča dostop do podatkov raka po indeksu.
+            </summary>
+            <param name="index">Indeks podatka</param>
+            <returns>Podatek na indeksu</returns>
+        </member>
+        <member name="M:ZivalLibrary.Raki.#ctor(System.Double,System.String,System.String,System.String,System.String,System.Int32,System.Boolean,System.Double)">
+            <summary>
+            Ustvari nov primerek razreda Raki.
+            </summary>
+            <param name="teza">Teža v kg.</param>
+            <param name="naravniHabitat">Naravni habitat.</param>
+            <param name="hrana">Vrsta hrane.</param>
+            <param name="oglasanje">Oglašanje.</param>
+            <param name="latinskoIme">Latinsko ime.</param>
+            <param name="steviloNog">Število nog.</param>
+            <param name="ziviVSlaniVodi">Ali rak živi v slani vodi.</param>
+            <param name="velikostKlesc">Velikost klešč v cm.</param>
+        </member>
+        <member name="M:ZivalLibrary.Raki.ToString">
+            <summary>
+            Vrne oblikovan niz podatkov raka.
+            </summary>
+            <returns>Oblikovan niz podatkov raka</returns>
+        </member>
+        <member name="M:ZivalLibrary.Raki.PremakniSe">
+            <summary>
+            Metoda, ki omogoča premikanje raka.
+            </summary>
+            <returns>Rak + latinsko ime raka + se plazi</returns>
+        </member>
+    </members>
+</doc>

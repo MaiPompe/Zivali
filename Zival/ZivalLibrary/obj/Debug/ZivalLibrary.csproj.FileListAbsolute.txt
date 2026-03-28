@@ -16,3 +16,4 @@ C:\Users\maipo\OneDrive\Dokumenti\Zivali\Zival\ZivalLibrary\obj\Debug\ZivalLibra
 C:\Users\maipo\OneDrive\Dokumenti\Zivali\Zival\ZivalLibrary\obj\Debug\ZivalLibrary.csproj.CoreCompileInputs.cache
 C:\Users\maipo\OneDrive\Dokumenti\Zivali\Zival\ZivalLibrary\obj\Debug\ZivalLibrary.dll
 C:\Users\maipo\OneDrive\Dokumenti\Zivali\Zival\ZivalLibrary\obj\Debug\ZivalLibrary.pdb
+C:\Users\maipo\OneDrive\Dokumenti\Zivali\Zival\ZivalLibrary\bin\Debug\ZivalLibrary.xml
